@@ -7,7 +7,7 @@ import Data.Char(isNumber, digitToInt)
 
 
 data PhoneDigit = Zero | One | Two | Three | Four | Five | Six | Seven | Eight | Nine
-  deriving (Show, Eq)
+  deriving (Show, Eq, Ord)
 
 -- too rethink types?
 telephoneMapping :: PhoneDigit -> [Char]
@@ -38,6 +38,3 @@ digitsFromString =
 
 telephoneWords :: [PhoneDigit] -> [String]
 telephoneWords = sequence . fmap telephoneMapping
-
-
--- TODO what difference do One, Zero make?

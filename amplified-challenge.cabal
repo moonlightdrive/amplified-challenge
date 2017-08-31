@@ -39,6 +39,7 @@ test-suite test-server
                   servant-server,
                   warp,
                   wai,
-                  hspec-wai
+                  hspec-wai,
+                  QuickCheck -any
    default-language: Haskell2010
                                       
