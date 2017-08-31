@@ -3,7 +3,7 @@
 Implementation by Jyotsna Prakash
 
 
-## Build and Running from Source
+## Build and Run from Source
    ``` bash
    git clone https://github.com/moonlightdrive/amplified-challenge.git
    cd amplified-challenge
