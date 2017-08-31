@@ -19,7 +19,7 @@ executable amplified-challenge
   main-is:             Main.hs
   -- other-modules:       
   other-extensions:    OverloadedStrings
-  build-depends:       base >=4.8 && <4.9,
+  build-depends:       base,
                        aeson,
                        servant-server,
                        transformers,
