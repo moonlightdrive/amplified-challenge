@@ -7,7 +7,7 @@ import Data.Char(isNumber, digitToInt)
 
 
 data PhoneDigit = Zero | One | Two | Three | Four | Five | Six | Seven | Eight | Nine
-  deriving (Show, Eq, Ord)
+  deriving (Show, Eq, Ord, Enum)
 
 -- too rethink types?
 telephoneMapping :: PhoneDigit -> [Char]
@@ -35,6 +35,8 @@ digitsFromString =
   let buttons = [Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
   in mapM (\c -> do { guard (isNumber c); return (buttons !!  digitToInt c) })
 
-
-telephoneWords :: [PhoneDigit] -> [String]
-telephoneWords = sequence . fmap telephoneMapping
+-- TODO do you really agree this is readable
+telephoneWords :: String -> Maybe [String]
+telephoneWords = digitsFromString
+                 >=> return . (sequence . fmap telephoneMapping . filterNoOps)
+  where filterNoOps = filter (> One)

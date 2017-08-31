@@ -21,7 +21,7 @@ errNotPhoneSeq = ServantErr 400 "Query string 'input' must be a sequence of digi
 phone :: Maybe String -> Handler [String]
 phone Nothing = throwError errNoInput
 phone (Just input) =
-  let possibleWords = digitsFromString input >>= return . telephoneWords
+  let possibleWords = telephoneWords input
   in case possibleWords of
     Nothing -> throwError errNotPhoneSeq
     Just ws -> return ws
