@@ -12,7 +12,7 @@ import Servant
 import Dialpad
 
 
-type DialpadAPI = "phone" :> QueryParam "input" String :> Get '[JSON] [String]
+type DialpadAPI = QueryParam "input" String :> Get '[JSON] [String]
 
 errNoInput, errNotPhoneSeq :: ServantErr
 errNoInput = ServantErr 400 "Query string 'input' not found" "" []

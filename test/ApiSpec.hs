@@ -12,10 +12,10 @@ main = hspec spec
 
 spec :: Spec
 spec = with (return app) $ do
-  describe "GET /phone" $ do
+  describe "GET /" $ do
     it "responds with 400" $ do
-      get "/phone" `shouldRespondWith` 400
+      get "/" `shouldRespondWith` 400
 
-  describe "GET /phone?input=25" $ do
+  describe "GET /?input=25" $ do
     it "responds with 200" $ do
-      get "/phone?input=25" `shouldRespondWith` 200
+      get "/?input=25" `shouldRespondWith` 200
