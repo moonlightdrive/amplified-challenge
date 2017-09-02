@@ -35,6 +35,6 @@ spec = with (return app) $ do
         "[\"a\",\"b\",\"c\"]"
 
   describe "GET ?input[]=0" $ do
-    it "response with an empty string" $ do
+    it "responds with no words" $ do
       get "/?input[]=0" `shouldRespondWith`
-        "[\"\"]"
+        "[]"
