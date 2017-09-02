@@ -3,8 +3,8 @@
 
 name:                amplified-challenge
 version:             0.1.0.0
--- synopsis:            
--- description:         
+synopsis:            Amplified developer challenge.   
+description:         A rest API for finding all possible "words"  from digits input
 -- license:             
 -- license-file:        LICENSE
 author:              Jyotsna Prakash
@@ -12,7 +12,9 @@ maintainer:          jyotsna.prakash@gmail.com
 -- copyright:           
 category:            Web
 build-type:          Simple
--- extra-source-files:  
+tested-with:         GHC==7.10.3                     
+extra-source-files:
+                   Readme.md                             
 cabal-version:       >=1.10
 
 executable amplified-challenge         

@@ -1,2 +1,7 @@
 language: haskell
 script: cabal configure --enable-tests && cabal build && cabal test --show-details=direct --test-option=--color
+
+cache:
+  directories:
+    - $HOME/.cabal/packages
+    - $HOME/.cabal/store

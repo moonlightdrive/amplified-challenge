@@ -1,6 +1,10 @@
 {-# LANGUAGE DataKinds #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
+{-|
+Module      : Api
+Description : 
+-}
 module Api (app) where
 
 import Data.Aeson
