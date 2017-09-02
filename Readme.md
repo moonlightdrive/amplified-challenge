@@ -2,6 +2,15 @@
 
 Implementation by Jyotsna Prakash
 
+## Documentation
+Documentation can be viewed at [https://moonlightdrive.github.io/amplified-challenge/](moonlightdrive.github.io/amplified-challenge).
+
+### Building docs
+This documentation can be build with
+``` bash
+cabal haddock --executables
+```
+You will find the generted docs in the folder `dist/doc/html/amplified-challenge/amplified-challenge/`.
 
 ## Build and Run from Source
    ``` bash

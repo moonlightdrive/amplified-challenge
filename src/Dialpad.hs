@@ -2,7 +2,15 @@
 -- Module      : Dialpad
 -- Description : A library for handling telephone digit inputs.
 --
--- Etc etc
+-- = A Valid Sequence of Phone Digits
+-- This module currently considers a valid sequence of phone digits
+-- to be a string that /only/ contains numeric characters,
+-- or is the empty string ""
+--
+-- The following are all invalid sequences:
+--
+-- * "a25"
+-- * "2,5"
 module Dialpad (PhoneDigit(..),
                 digitsFromString,
                 telephoneWords) where
@@ -43,9 +51,6 @@ hasMapping digit =
 -- | Convert a string to 'PhoneDigit's
 -- if that string represents a valid sequence of phone digits.
 --
--- A string is a valid sequence of phone digits if
--- it only consists of numeric characters
---
 -- >>> digitsFromString "25"
 -- Just [Two, Five]
 --
@@ -63,9 +68,6 @@ digitsFromString =
 -- | Given an input string that represents a sequence of phone digits,
 -- return a list of all possible words (including the gibberish ones!)
 -- that the dialpad sequence can map to
---
--- A string represnts a sequence of phone digits
--- if it consists only of numberic characters
 --
 -- >>> telephoneWords "25"
 -- Just ["aj","ak","al","bj","bk","bl","cj","ck","cl"]
