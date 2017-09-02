@@ -1,15 +1,18 @@
-module Dialpad
---  (digitsFromString, telephoneWords)
-where
+module Dialpad (digitsFromString,
+                telephoneWords) where
 
 import Control.Monad
 import Data.Char(isNumber, digitToInt)
 
 
+-- | A type for representing the digit buttons of a telephone keypad
 data PhoneDigit = Zero | One | Two | Three | Four | Five | Six | Seven | Eight | Nine
-  deriving (Show, Eq, Ord, Enum)
+  deriving (Show, Eq)
 
--- too rethink types?
+-- | Maps a digit to a list of the characters it represents.
+--
+-- This mapping is consistent with that of a modern phone,
+-- and maps letters Q and Z to numbers 7 and 9 respectively.
 telephoneMapping :: PhoneDigit -> [Char]
 telephoneMapping Zero  = ""
 telephoneMapping One   = ""
