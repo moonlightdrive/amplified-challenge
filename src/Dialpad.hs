@@ -67,6 +67,7 @@ digitsFromIntList =
 -- | Given a list of integers, return @True@ if it represents
 -- a valid sequence of phone digits, or @False@ otherwise
 isValidSequence :: [Int] -> Bool
+-- isValidSequence [] = False
 isValidSequence ns = all (\n -> (n < 10) && (n >= 0)) ns
 
 -- | Given a list of ints that represents a valid sequence of phone digits,
@@ -78,5 +79,7 @@ isValidSequence ns = all (\n -> (n < 10) && (n >= 0)) ns
 --
 -- >>> telephoneWords [2,5,25]
 -- Nothing
-telephoneWords :: [Int] -> [String]
-telephoneWords = sequence . fmap telephoneMapping . filter hasMapping . digitsFromIntList
+telephoneWords :: [Int] -> Maybe [String]
+telephoneWords ns =
+  let validSeq = if isValidSequence ns then Just (filter hasMapping . digitsFromIntList $ ns) else Nothing
+  in validSeq >>= return . sequence . fmap telephoneMapping

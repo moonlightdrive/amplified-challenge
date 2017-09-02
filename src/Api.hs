@@ -44,6 +44,7 @@ module Api (app) where
 import Network.Wai (Application)
 import Network.Wai.Handler.Warp (run)
 import Servant
+import Prelude hiding (words)
 
 import Dialpad
 
@@ -54,9 +55,9 @@ errNotPhoneSeq :: ServantErr
 errNotPhoneSeq = ServantErr 400 "Query string 'input' must be a sequence of digits" "" []
 
 phone :: [Int] -> Handler [String]
-phone input = if isValidSequence input
-              then return . telephoneWords $ input
-              else throwError errNotPhoneSeq
+phone input = case telephoneWords input of
+  Nothing -> throwError errNotPhoneSeq
+  Just (words) -> return words
 
 -- | Used by the executable in 'Main.main' to serve requests
 app :: Application

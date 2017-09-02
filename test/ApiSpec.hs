@@ -2,7 +2,7 @@
 module ApiSpec (main, spec) where
 
 import Test.Hspec
-import Test.Hspec.Wai(with, get, shouldRespondWith)
+import Test.Hspec.Wai((<:>),with, get, shouldRespondWith, matchHeaders)
 
 
 import Api(app)
@@ -12,10 +12,29 @@ main = hspec spec
 
 spec :: Spec
 spec = with (return app) $ do
-  describe "GET /" $ do
-    it "responds with 400" $ do
-      get "/" `shouldRespondWith` 400
-
   describe "GET /?input=25" $ do
+    it "responds with 400" $ do
+      get "/?input=25" `shouldRespondWith` 400
+
+  describe "GET ?input[]=2" $ do
     it "responds with 200" $ do
-      get "/?input=25" `shouldRespondWith` 200
+      get "/?input[]=2" `shouldRespondWith` "[\"a\",\"b\",\"c\"]"
+
+  describe "GET ?input[]=2,5" $ do
+    it "responds with 400" $ do
+      get "/?input[]=2,5" `shouldRespondWith` 400
+
+  describe "GET ?input[]=2&input[]=5" $ do
+    it "responds with 400" $ do
+      get "/?input[]=2&input[]=5" `shouldRespondWith`
+        "[\"aj\",\"ak\",\"al\",\"bj\",\"bk\",\"bl\",\"cj\",\"ck\",\"cl\"]"
+
+  describe "GET ?input[]=1&input[]=2&input[]=0" $ do
+    it "responds with 400" $ do
+      get "/?input[]=1&input[]=2&input[]=0" `shouldRespondWith`
+        "[\"a\",\"b\",\"c\"]"
+
+  describe "GET ?input[]=0" $ do
+    it "response with an empty string" $ do
+      get "/?input[]=0" `shouldRespondWith`
+        "[\"\"]"
