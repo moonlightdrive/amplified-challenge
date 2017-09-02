@@ -3,8 +3,10 @@ window.onload = function () {pageLoad();setSynopsis("mini_Api.html");};
 //]]>
 </script></head><body><div id="package-header"><ul class="links" id="page-menu"><li><a href="index.html">Contents</a></li><li><a href="doc-index.html">Index</a></li></ul><p class="caption">amplified-challenge</p></div><div id="content"><div id="module-header"><table class="info"><tr><th>Safe Haskell</th><td>None</td></tr><tr><th>Language</th><td>Haskell2010</td></tr></table><p class="caption">Api</p></div><div id="description"><p class="caption">Description</p><div class="doc"><p>Provides a RESTful API for GETting all possible
  representations
- using the number to letter mapping provided in the <a href="Dialpad.html">Dialpad</a> module.</p><h1>Making Requests</h1><p>Requests must be made to <code>/</code> with query parameter <strong>input</strong>. Example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>curl -v -X GET localhost:3000/?input=25
-</code></strong>* Rebuilt URL to: localhost:3000/?input=25
+ using the number to letter mapping provided in the <a href="Dialpad.html">Dialpad</a> module.</p><h1>Making Requests</h1><p>GET requests must be made to <code>/</code> with query parameter
+ <strong>input</strong> as an array of integers.</p><h2>Format of the <strong>input</strong> parameter</h2><p>An array containing the numbers 2 and 5 must be formatted as
+ <code>input[]=2&amp;input=5</code>. For Example:</p><pre class="screen"><code class="prompt">&gt;&gt;&gt; </code><strong class="userinput"><code>curl -v -X GET localhost:3000/?input[]=2&amp;input[]=5
+</code></strong>* Rebuilt URL to: localhost:3000/?input[]=2&amp;input[]=5
 *   Trying 127.0.0.1...
 * Connected to localhost (127.0.0.1) port 3000 (#0)
 &gt; GET /?input=25 HTTP/1.1
@@ -20,5 +22,5 @@ window.onload = function () {pageLoad();setSynopsis("mini_Api.html");};
 &lt; 
 * Connection #0 to host localhost left intact
 [&quot;aj&quot;,&quot;ak&quot;,&quot;al&quot;,&quot;bj&quot;,&quot;bk&quot;,&quot;bl&quot;,&quot;cj&quot;,&quot;ck&quot;,&quot;cl&quot;]
-</pre><h1>Types of Responses</h1><dl><dt><code>200 OK</code></dt><dd>Returns the result of <code><a href="Dialpad.html#v:telephoneWords">telephoneWords</a></code> in the response body as JSON</dd><dt><code>400 Bad Request</code></dt><dd>Occurs when the <strong>input</strong> parameter is missing or malformed,
+</pre><h1>Types of Responses</h1><dl><dt><code>200 OK</code></dt><dd>Returns the result of <code><a href="Dialpad.html#v:telephoneWords">telephoneWords</a></code> in the response body as JSON</dd><dt><code>400 Bad Request</code></dt><dd>Occurs when the <strong>input</strong> parameter is malformed,
  i.e. not a valid sequence of phone digits as defined by the <a href="Dialpad.html">Dialpad</a> module</dd></dl></div></div><div id="synopsis"><p id="control.syn" class="caption expander" onclick="toggleSection('syn')">Synopsis</p><ul id="section.syn" class="hide" onclick="toggleSection('syn')"><li class="src short"><a href="#v:app">app</a> :: Application</li></ul></div><div id="interface"><h1>Documentation</h1><div class="top"><p class="src"><a name="v:app" class="def">app</a> :: Application</p><div class="doc"><p>Used by the executable in <code><a href="Main.html#v:main">main</a></code> to serve requests</p></div></div></div></div><div id="footer"><p>Produced by <a href="http://www.haskell.org/haddock/">Haddock</a> version 2.16.1</p></div></body></html>

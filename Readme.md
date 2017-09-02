@@ -25,9 +25,9 @@ This project can be built and run from source or with docker.
    ./dist/build/amplified-challenge/amplified-challenge
    ```
 
-The webserver should now be running on `localhost:3000`. Try visiting [localhost:3000/phone?input=25](localhost:3000/phone?input=25). Or with `curl`,
+The webserver should now be running on `localhost:3000`. Check it out with `curl`,
    ``` bash
-   curl -v -X GET localhost:3000/phone?input=25
+   curl -v -X GET 'localhost:3000/?input[]=2&input[]=5' --globoff
    ```
 ### With Docker
 ``` bash
@@ -40,5 +40,5 @@ The webserver should now be running on `localhost:3000`. Try visiting [localhost
 ```
 From another terminal,
 ``` bash
-    curl -v -X GET localhost:$PORT/?input=25
+    curl -v -X GET 'localhost:$PORT/?input[]=2&input[]=5' --globoff
 ```    

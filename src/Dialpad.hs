@@ -2,17 +2,18 @@
 -- Module      : Dialpad
 -- Description : A library for handling telephone digit inputs.
 --
+-- A library for handling telephone digit inputs.
+--
 -- = A Valid Sequence of Phone Digits
--- This module currently considers a valid sequence of phone digits
--- to be a string that /only/ contains numeric characters,
--- or is the empty string ""
+-- A list of integers represents a valid sequence of phone digits
+-- if it only contains one-digit non-negative integers
 --
 -- The following are all invalid sequences:
 --
--- * "a25"
--- * "2,5"
+-- * [2,15]
+-- * [-1, 2, 5]
 module Dialpad (PhoneDigit(..),
-                digitsFromString,
+                isValidSequence,
                 telephoneWords) where
 
 import Control.Monad
@@ -47,7 +48,6 @@ hasMapping digit =
     One       -> False
     otherwise -> True
 
--- TODO rename this also make it more legible
 -- | Convert a string to 'PhoneDigit's
 -- if that string represents a valid sequence of phone digits.
 --
@@ -59,25 +59,24 @@ hasMapping digit =
 --
 -- >>> digitsFromString "2,5"
 -- Nothing
-digitsFromString :: String -> Maybe [PhoneDigit]
-digitsFromString =
+digitsFromIntList :: [Int] -> [PhoneDigit]
+digitsFromIntList =
   let buttons = [Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine]
-  in mapM (\c -> do { guard (isNumber c); return (buttons !!  digitToInt c) })
+  in map (\i -> buttons !!  i)
 
--- TODO do you really agree this is readable
--- | Given an input string that represents a sequence of phone digits,
+-- | Given a list of integers, return @True@ if it represents
+-- a valid sequence of phone digits, or @False@ otherwise
+isValidSequence :: [Int] -> Bool
+isValidSequence ns = all (\n -> (n < 10) && (n >= 0)) ns
+
+-- | Given a list of ints that represents a valid sequence of phone digits,
 -- return a list of all possible words (including the gibberish ones!)
 -- that the dialpad sequence can map to
 --
--- >>> telephoneWords "25"
+-- >>> telephoneWords [2,5]
 -- Just ["aj","ak","al","bj","bk","bl","cj","ck","cl"]
 --
--- >>> telephoneWords "ab34"
+-- >>> telephoneWords [2,5,25]
 -- Nothing
---
--- >>> telephoneWords "2,5"
--- Nothing
-telephoneWords :: String -> Maybe [String]
-telephoneWords = digitsFromString
-                 >=> return . (sequence . fmap telephoneMapping . removeNoOps)
-  where removeNoOps = filter hasMapping
+telephoneWords :: [Int] -> [String]
+telephoneWords = sequence . fmap telephoneMapping . filter hasMapping . digitsFromIntList
