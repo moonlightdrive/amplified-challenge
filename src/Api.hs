@@ -36,8 +36,6 @@
 -- i.e. not a valid sequence of phone digits as defined by the "Dialpad" module
 module Api (app) where
 
-import Data.Aeson
-import GHC.Generics
 import Network.Wai (Application)
 import Network.Wai.Handler.Warp (run)
 import Servant
