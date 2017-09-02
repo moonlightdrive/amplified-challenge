@@ -79,5 +79,5 @@ digitsFromString =
 -- Nothing
 telephoneWords :: String -> Maybe [String]
 telephoneWords = digitsFromString
-                 >=> return . (sequence . fmap telephoneMapping . filterNoOps)
-  where filterNoOps = filter hasMapping
+                 >=> return . (sequence . fmap telephoneMapping . removeNoOps)
+  where removeNoOps = filter hasMapping
