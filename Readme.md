@@ -3,10 +3,10 @@
 Implementation by Jyotsna Prakash
 
 ## Documentation
-Documentation can be viewed at [https://moonlightdrive.github.io/amplified-challenge/](moonlightdrive.github.io/amplified-challenge).
+Documentation can be viewed at [moonlightdrive.github.io/amplified-challenge/](https://moonlightdrive.github.io/amplified-challenge).
 
 ### Building docs
-This documentation can be build with
+The documentation can be built with
 ``` bash
 cabal haddock --executables
 ```
