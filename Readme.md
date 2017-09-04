@@ -2,6 +2,9 @@
 
 Implementation by Jyotsna Prakash
 
+## Build Status
+Build status & test results for commits to the master branch are available at [https://travis-ci.org/moonlightdrive/amplified-challenge](https://travis-ci.org/moonlightdrive/amplified-challenge).
+
 ## Documentation
 Documentation can be viewed at [moonlightdrive.github.io/amplified-challenge/](https://moonlightdrive.github.io/amplified-challenge).
 
