@@ -5,7 +5,7 @@
 -- A library for handling telephone digit inputs.
 --
 -- = A Valid Sequence of Phone Digits
--- A list of integers represents a valid sequence of phone digits
+-- An array of integers represents a valid sequence of phone digits
 -- if it only contains one-digit non-negative integers
 --
 -- The following are all invalid sequences:
@@ -13,8 +13,8 @@
 -- * [2,15]
 -- * [-1, 2, 5]
 module Dialpad (PhoneDigit(..),
-                isValidSequence,
-                telephoneWords) where
+                telephoneWords,
+                telephoneMapping) where
 
 import Control.Monad
 import Data.Char(isNumber, digitToInt)
@@ -28,6 +28,14 @@ data PhoneDigit = Zero | One | Two | Three | Four | Five | Six | Seven | Eight |
 --
 -- This mapping is consistent with that of a modern phone,
 -- which maps letters Q and Z to numbers 7 and 9 respectively.
+--
+-- The digits 'Zero' and 'One' map to no characters. 
+-- Therefore 'Zero' and 'One' behave like no-op, or buttons
+-- which do nothing.
+--
+-- It follows that @telephoneMapping X = telephoneMapping Y@
+-- where Y is a sequence of 'PhoneDigit's constructed by
+-- removing all occurrences of 'Zero' and 'One' from X.
 telephoneMapping :: PhoneDigit -> [Char]
 telephoneMapping Zero  = ""
 telephoneMapping One   = ""
