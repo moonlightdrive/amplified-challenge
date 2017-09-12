@@ -1,7 +1,5 @@
 # Amplified Developer Challenge
 
-Implementation by Jyotsna Prakash
-
 ## Build Status
 Build status & test results for commits to the master branch are available at [https://travis-ci.org/moonlightdrive/amplified-challenge](https://travis-ci.org/moonlightdrive/amplified-challenge).
 
